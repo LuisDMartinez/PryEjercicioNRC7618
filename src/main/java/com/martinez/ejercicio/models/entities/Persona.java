@@ -129,9 +129,10 @@ public abstract class Persona {
 		this.telefono = telefono;
 	}
 	
-	
-	
-	//getters and setters
+	@Override
+	public String toString() {
+		return this.getApellido() + " " + this.getNombre() ;
+	}
 	
 	
 	
