@@ -36,7 +36,7 @@ public class Profesor extends Persona implements Serializable {
 
 	public Profesor(Integer id) {
 		super();
-		this.setIdPersona(id);
+		this.setIdpersona(id);
 	}
 
 	public String getTitulo() {

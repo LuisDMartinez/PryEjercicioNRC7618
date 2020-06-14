@@ -50,10 +50,10 @@ public class Materia implements Serializable{
 		super();
 		this.idmateria = id;
 	}
-	public Integer getIdMateria() {
+	public Integer getIdmateria() {
 		return idmateria;
 	}
-	public void setIdMateria(Integer idMateria) {
+	public void setIdmateria(Integer idMateria) {
 		this.idmateria = idMateria;
 	}
 	public String getNombre() {
@@ -118,6 +118,12 @@ public class Materia implements Serializable{
 	public void setSemestre(Semestre semestre) {
 		this.semestre = semestre;
 	}
+	@Override
+	public String toString() {
+		return this.getNombre();
+	}
+	
+	
 	
 	
 	

@@ -37,7 +37,7 @@ public class AlumnoController {
 		return "alumno/form"; //va la ubicación de la vista
 	}
 	
-	@GetMapping(value="/retrieve")//https://localhost:8080/alumno/retrieve
+	@GetMapping(value="/retrieve/{id}")//https://localhost:8080/alumno/retrieve
 	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
 		Alumno alumno = srvAlumno.findById(id);//consulta
 		model.addAttribute("alumno",alumno);
@@ -56,7 +56,7 @@ public class AlumnoController {
 	@GetMapping(value="/delete/{id}")
 	public String delete(@PathVariable(value="id") Integer id, Model model) {
 		this.srvAlumno.delete(id);
-		//despues de corrar se hace un redirect a una accion por invocar
+		//despues de borrar se hace un redirect a una accion por invocar
 		return "redirect:/alumno/list";
 	}
 	
@@ -73,4 +73,5 @@ public class AlumnoController {
 		this.srvAlumno.save(alumno);
 		return "redirect:/alumno/list";
 	}
+
 }

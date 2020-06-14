@@ -1,4 +1,5 @@
 package com.martinez.ejercicio.models.entities;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.persistence.Basic;
@@ -7,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
 public abstract class Persona {
@@ -15,7 +20,7 @@ public abstract class Persona {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name="pk_persona")
-	private Integer idPersona;
+	private Integer idpersona;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -30,6 +35,8 @@ public abstract class Persona {
 	private String lugarNacimiento;
 	
 	@Column(name="fecha_nacimiento")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	private Calendar fechaNacimiento;
 	
 	@Column(name="sexo")
@@ -52,17 +59,17 @@ public abstract class Persona {
 	
 	public Persona(Integer id) {
 		super();
-		this.idPersona = id;
+		this.idpersona = id;
 	}
 
 
 
 
-	public Integer getIdPersona() {
-		return idPersona;
+	public Integer getIdpersona() {
+		return idpersona;
 	}
-	public void setIdPersona(Integer idPersona) {
-		this.idPersona = idPersona;
+	public void setIdpersona(Integer idPersona) {
+		this.idpersona = idPersona;
 	}
 	public String getNombre() {
 		return nombre;
@@ -122,6 +129,7 @@ public abstract class Persona {
 		return telefono;
 	}
 
+	
 
 
 
@@ -133,7 +141,10 @@ public abstract class Persona {
 	public String toString() {
 		return this.getApellido() + " " + this.getNombre() ;
 	}
-	
+	public String fechaNac() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaNacimiento.getTime());
+	}
 	
 	
 	

@@ -31,7 +31,7 @@ public class Alumno extends Persona implements Serializable{
 	
 	public Alumno(Integer id) {
 		super();
-		this.setIdPersona(id);
+		this.setIdpersona(id);
 	}
 
 	public String getIdentificador() {
