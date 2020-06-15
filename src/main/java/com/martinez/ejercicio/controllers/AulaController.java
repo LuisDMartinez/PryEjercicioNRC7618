@@ -11,64 +11,57 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.martinez.ejercicio.models.entities.Aula;
-import com.martinez.ejercicio.models.entities.Materia;
 import com.martinez.ejercicio.models.services.IAulaService;
-import com.martinez.ejercicio.models.services.IMateriaService;
 
 @Controller
-@RequestMapping(value="/materia") 
-public class MateriaController {
+@RequestMapping(value="/aula") 
+public class AulaController {
 
 	@Autowired
-	private IMateriaService srvMateria;
 	private IAulaService srvAula;
 	
 	@GetMapping(value="/create")//https://localhost:8080/alumno/create
 	public String create(Model model) {
-		Materia materia = new Materia();
-		/*List<Aula> aulas = this.srvAula.findAll();
-		model.addAttribute("aula", aulas);*/
-		model.addAttribute("title","Registro de nueva Materia");
-		model.addAttribute("materia", materia);
-		return "materia/form";
+		Aula aula = new Aula();
+		model.addAttribute("title","Registro de nueva Aula");
+		model.addAttribute("aula", aula);
+		return "aula/form";
 	}
 	
 	@GetMapping(value="/retrieve/{id}")//https://localhost:8080/alumno/retrieve
 	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
-		Materia materia = srvMateria.findById(id);//consulta
-		model.addAttribute("materia", materia);
-		return "materia/card";
+		Aula aula = srvAula.findById(id);//consulta
+		model.addAttribute("aula", aula);
+		return "aula/card";
 	}
 	
 	@GetMapping(value="/update/{id}")
 	public String update(@PathVariable(value="id") Integer id, Model model) {
-		Materia materia = srvMateria.findById(id);
-		model.addAttribute("materia", materia);
+		Aula aula = srvAula.findById(id);
+		model.addAttribute("aula", aula);
 		//el metodo toString se ejecuta por default
-		model.addAttribute("title","Actualizando el registro de: "+ materia.toString());
-		return "materia/form";
+		model.addAttribute("title","Actualizando el registro de: "+ aula.toString());
+		return "aula/form";
 	}
 	
 	@GetMapping(value="/delete/{id}")
 	public String delete(@PathVariable(value="id") Integer id, Model model) {
-		this.srvMateria.delete(id);
+		this.srvAula.delete(id);
 		//despues de borrar se hace un redirect a una accion por invocar
-		return "redirect:/materia/list";
+		return "redirect:/aula/list";
 	}
 	
 	@GetMapping(value="/list")
 	public String list(Model model) {
-		List<Materia> materias = this.srvMateria.findAll();
-		
-		model.addAttribute("materias", materias);
-		
-		model.addAttribute("title","Listado de materias");
-		return "materia/list";
+		List<Aula> aulas = this.srvAula.findAll();
+		model.addAttribute("aulas", aulas);
+		model.addAttribute("title","Listado de aulas");
+		return "aula/list";
 	}
 	
 	@PostMapping(value="/save")//https://localhost:8080/alumno/create
-	public String save(Materia materia, Model model) {
-		this.srvMateria.save(materia);
-		return "redirect:/materia/list";
+	public String save(Aula aula, Model model) {
+		this.srvAula.save(aula);
+		return "redirect:/aula/list";
 	}
 }

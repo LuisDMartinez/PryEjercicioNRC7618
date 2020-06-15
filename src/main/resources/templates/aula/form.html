@@ -27,36 +27,22 @@
 											<div class="text-center">
 												<h1 th:text="${title}" class="h4 text-gray-900 mb-4"></h1>
 											</div>
-											<form class="user" th:action="@{/materia/save}"
-												th:object="${materia}" method="post">
+											<form class="user" th:action="@{/aula/save}"
+												th:object="${aula}" method="post">
 												<hr>
 												<div class="form-group row">
 													<div class="col-sm-6 mb-3 mb-sm-0">
-														<input type="text" class="form-control form-control-user"
-															th:field="*{nombre}" placeholder="Nombre">
+														<input type="date" class="form-control form-control-user"
+															th:field="*{fechaInicio}">
 													</div>
 													
 													<div class="col-sm-6 mb-3 mb-sm-0">
-														<input type="text" class="form-control form-control-user"
-															th:field="*{nrc}" placeholder="NRC">
+														<input type="date" class="form-control form-control-user"
+															th:field="*{fechaFin}">
 													</div>
 													
 												</div>
-												<div class="form-group row">
-													<div class="col-sm-6 mb-3 mb-sm-0">
-														<input type="number" class="form-control form-control-user"
-															th:field="*{creditos}" placeholder="Cr&eacute;ditos">
-													</div>
-												</div>
-												<!--  <div class="form-group row">
-													<div class="col-sm-6 mb-3 mb-sm-0">
-														<select class="form-control form-control-user"  th:field="${materia.aulas}" id="dropOperator">
-													    	<option value="0">select operator</option>
-													    	<option th:each="operator : ${aula}" th:value="${operator.idaula}" th:text="${operator.fechaIncio()}"></option>
-													    </select>
-													</div>
-												</div>
-												-->
+												
 												
 												<hr>
 												<div class="form-group row">
@@ -66,12 +52,12 @@
 															value="Guardar" />
 													</div>
 													<div class="col-sm-6 mb-3 mb-sm-0">
-														<a th:href="@{/materia/list}"
+														<a th:href="@{/aula/list}"
 															class="btn btn-danger btn-user btn-block">Cancelar</a>
 													</div>
 												</div>
 												
-												<input type="hidden" th:field="*{idmateria}" />
+												<input type="hidden" th:field="*{idaula}" />
 
 											</form>
 										</div>
