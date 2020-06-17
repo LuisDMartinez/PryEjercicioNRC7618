@@ -128,7 +128,12 @@ public class Semestre implements Serializable {
 	/*Se crea un nombre que luego va a ser un atributo en la clase materia*/
 	@OneToMany(mappedBy = "semestre", fetch=FetchType.LAZY)
 	//mappedBy debe ser un atributo en la clase relacionada
-	private List<Materia> materias; 
+	private List<Materia> materias;
+
+	@Override
+	public String toString() {
+		return this.getCodigo() + " " + this.getDescripcion();
+	} 
 	
 	
 }

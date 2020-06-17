@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.martinez.ejercicio.models.entities.Area;
 import com.martinez.ejercicio.models.entities.Aula;
 import com.martinez.ejercicio.models.entities.Materia;
+import com.martinez.ejercicio.models.entities.Semestre;
+import com.martinez.ejercicio.models.services.IAreaService;
 import com.martinez.ejercicio.models.services.IAulaService;
 import com.martinez.ejercicio.models.services.IMateriaService;
+import com.martinez.ejercicio.models.services.ISemestreService;
 
 @Controller
 @RequestMapping(value="/materia") 
@@ -21,15 +25,25 @@ public class MateriaController {
 
 	@Autowired
 	private IMateriaService srvMateria;
-	private IAulaService srvAula;
+	@Autowired
+	private IAreaService srvArea;
+	@Autowired
+	private ISemestreService srvSemestre;
 	
-	@GetMapping(value="/create")//https://localhost:8080/alumno/create
+	@GetMapping(value="/create")
 	public String create(Model model) {
 		Materia materia = new Materia();
-		/*List<Aula> aulas = this.srvAula.findAll();
-		model.addAttribute("aula", aulas);*/
+		
+		List<Area> areas = srvArea.findAll();
+		model.addAttribute("areas", areas);
+		
+		List<Semestre> semestres = srvSemestre.findAll();
+		model.addAttribute("semestres", semestres);
+		
 		model.addAttribute("title","Registro de nueva Materia");
 		model.addAttribute("materia", materia);
+		
+		
 		return "materia/form";
 	}
 	
@@ -46,6 +60,10 @@ public class MateriaController {
 		model.addAttribute("materia", materia);
 		//el metodo toString se ejecuta por default
 		model.addAttribute("title","Actualizando el registro de: "+ materia.toString());
+		List<Area> areas = srvArea.findAll();
+		model.addAttribute("areas", areas);
+		List<Semestre> semestres = srvSemestre.findAll();
+		model.addAttribute("semestres", semestres);
 		return "materia/form";
 	}
 	
