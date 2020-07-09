@@ -14,14 +14,10 @@ public class MainController {
 		return "index";
 	}
 	
-	@GetMapping(value="/tables.html")
-	public String portfolio(Model model) {
-		return "tables";
+	@GetMapping(value= {"/404.html"})
+	public String notfound(Model model) {
+		return "404";
 	}
 	
-	@GetMapping(value="/register.html")
-	public String register(Model model) {
-		return "register";
-	}
 
 }

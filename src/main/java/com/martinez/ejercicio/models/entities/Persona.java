@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,12 +26,17 @@ public abstract class Persona {
 	private Integer idpersona;
 	
 	@Column(name="nombre")
+	@NotEmpty
+	@Size(max=35)
 	private String nombre;
 	
 	@Column(name="apellido")
 	private String apellido;
 	
+	
 	@Column(name="cedula")
+	@NotEmpty
+	@Size(max=15)
 	private String cedula;
 	
 	@Column(name="lugar_nacimiento")
@@ -42,12 +50,17 @@ public abstract class Persona {
 	@Column(name="sexo")
 	private String sexo;
 	
+	
+	
 	@Column(name="email")
+	@Email
 	private String email;
 	
 	@Column(name="telefono")
 	private String telefono;
 	
+	@Column(name="imagen")
+	private String imagen;
 	
 	
 	public Persona() {
@@ -107,6 +120,22 @@ public abstract class Persona {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+	
+	
+
+
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 
 
@@ -142,6 +171,7 @@ public abstract class Persona {
 		return this.getApellido() + " " + this.getNombre() ;
 	}
 	public String fechaNac() {
+		if(this.fechaNacimiento == null) return "-";
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
 		return sdf.format(fechaNacimiento.getTime());
 	}

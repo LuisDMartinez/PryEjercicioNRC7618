@@ -4,7 +4,7 @@
 <body id="page-top">
 
 	<div id="wrapper">
-		<ul th:replace="layout :: frgSideBar"></ul>
+		<ul th:replace="layout :: frgSideBar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"></ul>
 
 		<div id="content-wrapper" class="d-flex flex-column">
 
@@ -55,9 +55,9 @@
 			<footer th:replace="layout :: frgFooter"></footer>
 
 		</div>
-
+		
 	</div>
-	
+	<div th:replace="layout :: frgScripts"></div>
 
 </body>
 </html>
